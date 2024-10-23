@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Unity/C# by SushkaCraft</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preload" href="/fonts/Inter-VariableFont_opsz,wght.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="icon" href="/images/avatar.ico" type="image/x-icon">
+</head>
+<body>
+    <main class="container">
+        <section class="column bg-white">
+            <div class="flex header">
+                <div class="column">
+                    <span class="lesson-title">
+                        <h1 class="text-2xl">Урок №2</h1>
+                        <h3 class="text-2xl">Условные Операторы</h3>
+                    </span>
+                </div>
+            </div>
+        </section>
+        <section class="column">
+            <h4 class="title">Условный оператор if</h4>
+            <p class="text-sm">
+                В C# и других языках программирования проверка условий является важным аспектом. Мы часто оказываемся в ситуациях, когда необходимо установить, истинны ли условия, чтобы управлять выполнением программы. На эти условия могут влиять ввод пользователя, время, контекст выполнения и прочие факторы.
+            </p>
+            <span class="note">Конструкция if выполняет блок кода, если заданное условие — истинно, т.е. <span class="marker">true</span>.</span>
+            <p class="text-sm">
+                <h2>
+                    Синтаксис
+                </h2>
+            </p>
+            <span class="code-note">
+                if (условие) {
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;// Блок кода<br>
+                }
+            </span>
+
+            <p class="text-sm">
+                Условие может возвращать одно из двух значений: true или false.
+                <li>Если условие = true, инструкции внутри тела if (внутри {...}) выполнятся.</li>
+                <li>Если условие = false, C# проигнорирует инструкции внутри тела if.</li>
+            </p>
+            <span class="code-note">
+                if (number < 3) {<br>&nbsp;&nbsp;&nbsp;&nbsp;number += 2;<br>}
+            </span>
+            <p class="text-sm">
+                В данном примере мы видим фрагмент кода с условием <span class="marker">number < 3</span>, т.е. если наше число окажется меньше 3, то мы к нему добавим 2, с помощью оператора <span class="marker">+=</span>.
+            </p>
+            <span class="note">Оператор <span class="marker">a += b</span> является сокращенной формой записи <span class="marker">a = a + b</span></span>
+        </section>
+        <section class="column">
+            <h4 class="title">Условный оператор else</h4>
+            <p class="text-sm">
+                Иногда требуется выполнить альтернативный код, если условие в операторе <span class="marker">if</span> ложно. Для этого используется оператор <span class="marker">else</span>. Он позволяет задать блок кода, который выполнится, если предшествующее условие не выполнено.
+            </p>
+            <span class="code-note">
+                if (условие) {
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;// Блок кода, если условие истинно<br>
+                } else {
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;// Блок кода, если условие ложно<br>
+                }
+            </span>
+            <p class="text-sm">
+                Пример использования <span class="marker">if-else</span>:
+            </p>
+            <span class="code-note">
+                if (number < 3) {<br>&nbsp;&nbsp;&nbsp;&nbsp;number += 2;<br>} else {<br>&nbsp;&nbsp;&nbsp;&nbsp;number -= 1;<br>}
+            </span>
+            <p class="text-sm">
+                В данном примере, если <span class="marker">number</span> меньше 3, мы добавим 2, иначе вычтем 1.
+            </p>
+        </section>
+        
+        <section class="column">
+            <h4 class="title">Условные операторы else if</h4>
+            <p class="text-sm">
+                Для проверки нескольких условий последовательно используется конструкция <span class="marker">else if</span>. Это позволяет избежать глубоких вложений и сделать код более читаемым.
+            </p>
+            <span class="code-note">
+                if (условие1) {
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;// Блок кода для условия1<br>
+                } else if (условие2) {
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;// Блок кода для условия2<br>
+                } else {
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;// Блок кода, если ни одно из условий не выполнено<br>
+                }
+            </span>
+            <p class="text-sm">
+                Пример использования <span class="marker">if-else if</span>:
+            </p>
+            <span class="code-note">
+                if (number < 3) {<br>&nbsp;&nbsp;&nbsp;&nbsp;number += 2;<br>} else if (number == 3) {<br>&nbsp;&nbsp;&nbsp;&nbsp;number = 0;<br>} else {<br>&nbsp;&nbsp;&nbsp;&nbsp;number -= 1;<br>}
+            </span>
+            <p class="text-sm">
+                Здесь, если <span class="marker">number</span> меньше 3, мы добавляем 2. Если <span class="marker">number</span> равен 3, мы устанавливаем его в 0. В противном случае вычитаем 1.
+            </p>
+        </section>
+        
+        <section class="column">
+            <h4 class="title">Условный оператор switch-case</h4>
+            <p class="text-sm">
+                Когда необходимо проверить одно значение на соответствие нескольким возможным вариантам, удобнее использовать оператор <span class="marker">switch</span>. Он улучшает читаемость кода по сравнению с множественными условиями <span class="marker">if-else</span>.
+            </p>
+            <span class="code-note">
+                switch (выражение) {
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;case значение1:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Блок кода для значения1<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;case значение2:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Блок кода для значения2<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;default:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Блок кода, если ни одно значение не совпадает<br>
+                }
+            </span>
+            <p class="text-sm">
+                Пример использования <span class="marker">switch-case</span>:
+            </p>
+            <span class="code-note">
+                switch (day) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 1:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Понедельник<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 2:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Вторник<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 3:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Среда<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 4:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Четверг<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 5:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Пятница<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 6:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Суббота<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 7:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Воскресенье<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;default:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Нет такого дня недели<br>
+                }
+            </span>
+            <p class="text-sm">
+                В данном примере, если <span class="marker">day</span> равен 1, выполняется код для понедельника. Если 2 — для вторника, а для остальных значений — блок кода в <span class="marker">default</span>.
+            </p>
+            <span class="note">
+                <span class="marker">case</span> не обозначает какой-либо отдельный блок кода, а только определяет точку входа в него. Когда оператор <span class="marker">switch</span> находит подходящий <span class="marker">case</span>, программа начнет свое выполнение с этой точки и будет выполнять все последующие блоки кода по порядку. Чтобы этого избежать, необходимо использовать оператор <span class="marker">break;</span>, чтобы завершить выполнение оператора <span class="marker">switch</span>.
+            </span>
+            <span class="code-note">
+                switch (month) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 12:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 1:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 2:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Зима<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                    <br>
+        
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 3:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 4:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 5:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Весна<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                    <br>
+        
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 6:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 7:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 8:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Лето<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                    <br>
+        
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 9:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 10:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 11:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Осень<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                    <br>
+        
+                    &nbsp;&nbsp;&nbsp;&nbsp;default:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Нет такого месяца<br>
+                }
+            </span>
+            <p class="text-sm">
+                В этом примере, если <span class="marker">month</span> равен 12, 1 или 2, программа определит, что это зима. Аналогично, для месяцев 3, 4 и 5 будет весна, для 6, 7 и 8 — лето, а для 9, 10 и 11 — осень. Мы смогли это реализовать с помощью подряд идущих case'ов.
+            </p>
+        </section>
+        <section class="column">
+            <h4 class="title">?: - Тернарный оператор if</h4>
+            <h6>Дополнение</h6>
+            <p class="text-sm">
+                Тернарный оператор <span class="marker">if</span>, или условный оператор, позволяет компактно записывать условные выражения в одну строку. Это удобный способ присвоения значений на основе условия.
+            </p>
+            <p class="text-sm">
+                <strong>Синтаксис:</strong>
+            </p>
+            <span class="code-note">
+                условие ? выражение1 : выражение2;
+            </span>
+            <p class="text-sm">
+                <strong>Пример использования:</strong>
+            </p>
+            <span class="code-note">
+                int number = 5;<br>
+                string result = (number > 0) ? "Положительное число" : "Отрицательное число или ноль";
+            </span>
+            <p class="text-sm">
+                В этом примере, если <span class="marker">number</span> больше 0, переменной <span class="marker">result</span> будет присвоено значение "Положительное число". В противном случае ей будет присвоено значение "Отрицательное число или ноль".
+            </p>
+        </section>
+
+        <span></br>&nbsp;</span>
+    </main>
+    <footer class="footer">
+        <a href="lesson1cs.html" class="nav-button" title="Главная">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 6l-6 6 6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+        <a href="lesson3cs.html" class="nav-button" title="Следующий урок">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </footer>
+</body>
+</html>

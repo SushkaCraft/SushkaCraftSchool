@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Unity/C# by SushkaCraft</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preload" href="/fonts/Inter-VariableFont_opsz,wght.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="icon" href="/images/avatar.ico" type="image/x-icon">
+</head>
+<body>
+    <main class="container">
+        <section class="column bg-white">
+            <div class="flex header">
+                <div class="column">
+                    <span class="lesson-title">
+                        <h1 class="text-2xl">Урок №1</h1>
+                        <h3 class="text-2xl">Переменные и правила их Именования</h3>
+                    </span>
+                </div>
+            </div>
+        </section>
+        <section class="column">
+            <h4 class="title">Переменные</h4>
+            <span class="note">Переменная — именованная область памяти. Переменные в программах используются для хранения данных определенного типа.</span>
+            <p class="text-sm">
+                Простым языком: Переменная — сундучок, в котором можно хранить определенные предметы (числа, дроби, символы, строки).</br>
+                В языке C# есть следующие базовые типы данных:
+            </p>
+            <li>bool: хранит значение true или false (логические литералы).</li>
+            <li>byte: хранит целое число от 0 до 255 и занимает 1 байт.</li>
+            <li>sbyte: хранит целое число от -128 до 127 и занимает 1 байт.</li>
+            <li>short: хранит целое число от -32768 до 32767 и занимает 2 байта.</li>
+            <li>ushort: хранит целое число от 0 до 65535 и занимает 2 байта.</li>
+            <li>int: хранит целое число от -2147483648 до 2147483647 и занимает 4 байта.</li>
+            <li>uint: хранит целое число от 0 до 4294967295 и занимает 4 байта.</li>
+            <li>long: хранит целое число от –9 223 372 036 854 775 808 до 9 223 372 036 854 775 807 и занимает 8 байт.</li>
+            <li>ulong: хранит целое число от 0 до 18 446 744 073 709 551 615 и занимает 8 байт.</li>
+            <li>float: хранит число с плавающей точкой и занимает 4 байта.</li>
+            <li>double: хранит число с плавающей точкой и занимает 8 байт.</li>
+            <li>char: хранит одиночный символ в кодировке Unicode и занимает 2 байта.</li>
+            <li>string: хранит набор символов Unicode.</li>
+            <li>object: может хранить значение любого типа данных и занимает 4 байта на 32-разрядной платформе и 8 байт на 64-разрядной платформе.</li>
+            <p class="text-sm">
+                Переменные объявляются по принципу:
+            </p>
+            <span class="note">тип_данных имяПеременной = значение;</span>
+            <p class="text-sm">
+                Например:
+            </p>
+            <span class="code-note">int age = 18;</span>
+            <p class="text-sm">
+                В этом примере мы объявили переменную <span class="marker">age</span> типа <span class="marker">int</span>, которая в качестве значения может содержать только целые числа.</br>
+                При создании переменной не обязательно указывать её значение. А можно сделать это позже. При присваивании переменной какого-либо значения, происходит инициализация переменной.
+            </p>
+            <span class="code-note">
+                int age; // Объявление</br>
+                age = 18; // Инициализация
+            </span>
+            <p class="text-sm">
+                Также мы можем переопределять значение переменной. Например, так:
+            </p>
+            <span class="code-note">
+                int age = 18;</br>
+                age = 22;
+            </span>
+            <p class="text-sm">
+                У нас есть возможность переопределять значение переменной, но не её тип данных. В C# мы можем создать переменную без явного задания её типа данных с помощью ключевого слова <span class="marker">var</span>.</br>
+                Компилятор сам задаст тип данных переменной, когда мы присвоим ей какое-либо значение. Более подробно мы это разберем на <a href="lesson28_1cs.html">28 уроке "Преобразование типов C#"</a>
+            </p>
+            <h4 class="title">Правила именования переменных</h4>
+            <p class="text-sm">
+                Имена переменных должны соответствовать следующим правилам:
+                <li>Имя переменной должно быть осмысленным, например, <span class="marker">name</span>, <span class="marker">age</span>, <span class="marker">subject</span> понятнее, чем <span class="marker">X</span>, <span class="marker">Y</span> и <span class="marker">Z</span></li>
+                <li>Принято использовать camelCase со строчной буквы для локальных переменных. Например: numberOfStudents, age и т. д.
+                </li>
+                <span class="note">Если переменная имеет модификатор доступа <span class="marker">private</span>, то имя переменой начинается с символа <span class="marker">_</span>.</span>
+            </p>
+            <h4 class="title">Константы</h4>
+            <h6>Дополнение</h6>
+            <p class="text-sm">
+                Кроме переменных в C# есть ещё константы. Их главное отличие от простых переменных — это ключевое слово <span class="marker">const</span>. Также константы от переменных отличает то, что они должны быть проинициализированы при объявлении, и то, что мы не можем извне менять значение константы.
+            </p>
+            <span></br>&nbsp;</span>
+        </section>
+    </main>
+    <footer class="footer">
+        <a href="/index.html" class="nav-button" title="Главная">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 6l-6 6 6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+        <a href="lesson2cs.html" class="nav-button" title="Следующий урок">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </footer>
+</body>
+</html>

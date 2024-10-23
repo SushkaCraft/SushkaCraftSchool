@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Unity/C# by SushkaCraft</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preload" href="/fonts/Inter-VariableFont_opsz,wght.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="icon" href="/images/avatar.ico" type="image/x-icon">
+</head>
+<body>
+    <main class="container">
+        <section class="column bg-white">
+            <div class="flex header">
+                <div class="column">
+                    <span class="lesson-title">
+                        <h1 class="text-2xl">Урок №3</h1>
+                        <h3 class="text-2xl">Логическое И и ИЛИ C#</h3>
+                    </span>
+                </div>
+            </div>
+        </section>
+        <section class="column">
+            <h4 class="title">Логические операторы</h4>
+            <p class="text-sm">
+                В C# логические операторы используются для выполнения логических операций над булевыми значениями (true или false). Основными логическими операторами являются:
+            </p>
+            <ul>
+                <li><strong>И (&&)</strong>: возвращает true, если оба условия истинны.</li>
+                <li><strong>ИЛИ (||)</strong>: возвращает true, если хотя бы одно из условий истинно.</li>
+            </ul>
+
+            <h4 class="title">Булевы значения</h4>
+            <p class="text-sm">
+                Булевый тип данных (bool) может принимать только два значения: <span class="marker">true</span> или <span class="marker">false</span>. Он широко используется в условиях и логических операциях.
+            </p>
+
+            <h4 class="title">Пример использования логических операторов</h4>
+            <p class="text-sm">
+                Рассмотрим пример, в котором мы проверяем, находится ли число в диапазоне от 10 до 20:
+            </p>
+            <span class="code-note">
+                int number = 15;<br>
+                bool isInRange = (number >= 10) && (number <= 20);<br>
+                if (isInRange) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine("Число в диапазоне от 10 до 20.");<br>
+                } else {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine("Число вне диапазона.");<br>
+                }
+            </span>
+            <p class="text-sm">
+                В этом примере мы используем логический оператор <strong>И (&&)</strong> для проверки, находится ли переменная <span class="marker">number</span> в заданном диапазоне. Если оба условия истинны, будет выведено сообщение о том, что число находится в диапазоне.
+            </p>
+            <p class="text-sm">
+                Рассмотрим ещё один пример с оператором <strong>ИЛИ (||)</strong>:
+            </p>
+            <span class="code-note">
+                bool isWeekend = (day == "Суббота") || (day == "Воскресенье");<br>
+                if (isWeekend) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine("Сегодня выходной!");<br>
+                } else {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine("Сегодня рабочий день.");<br>
+                }
+            </span>
+            <p class="text-sm">
+                Здесь мы проверяем, является ли день выходным. Если <span class="marker">day</span> равен "Суббота" или "Воскресенье", то программа выведет сообщение о выходном.
+            </p>
+        </section>
+        <section class="column">
+            <h4 class="title">Логический оператор НЕ</h4>
+            <p class="text-sm">
+                Логический оператор <span class="marker">НЕ (!)</span> инвертирует булевое значение. Если значение истинно, то оно станет ложным, и наоборот.
+            </p>
+            <p class="text-sm">
+                <strong>Синтаксис:</strong>
+            </p>
+            <span class="code-note">
+                bool isTrue = true;<br>
+                bool isFalse = !isTrue; // isFalse теперь false
+            </span>
+            <p class="text-sm">
+                В этом примере переменная <span class="marker">isFalse</span> будет содержать значение <span class="marker">false</span>, так как оператор <span class="marker">!</span> инвертирует значение <span class="marker">isTrue</span>. <br>
+                Изначально у нас была <span class="marker">Прадва</span> - <span class="marker">isTrue</span>, потом мы сказали, что <span class="marker">Ложь</span> - <span class="marker">isFalse</span> равняется <span class="marker">НЕ Правде</span> - <span class="marker">!isTrue</span>. Примерно так работает <span class="marker">НЕ (!)</span> в C#, меняет логическое значение на противоположное.
+            </p>
+        </section>
+        
+        <span></br>&nbsp;</span>
+    </main>
+    <footer class="footer">
+        <a href="lesson2cs.html" class="nav-button" title="Предыдущий урок">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 6l-6 6 6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+        <a href="lesson4cs.html" class="nav-button" title="Следующий урок">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </footer>
+</body>
+</html>
