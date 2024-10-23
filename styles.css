@@ -61,7 +61,11 @@ html, body {
         height: 64px;
     }
 
-    ul, ol {
+    ul {
+        list-style-type: none;
+    }
+
+    ol {
         list-style-type: none;
     }
 }
