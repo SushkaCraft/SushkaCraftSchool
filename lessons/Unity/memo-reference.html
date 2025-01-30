@@ -130,6 +130,302 @@ GetComponent&lt;TMP_Text&gt;().text = $"Score: {currentScore}";</code></pre>
                     <pre><code>// Переключение в режим мировых координат
 GetComponent&lt;Canvas&gt;().renderMode = RenderMode.WorldSpace;</code></pre>
                 </div>
+                
+                <h3>Примеры скриптов</h3>
+                <h4>№1 - Реализация Показанных Методов</h4>
+                <pre><code>using UnityEngine;
+using TMPro;
+using System.Collections;
+
+namespace Demo
+{
+    [RequireComponent(typeof(Rigidbody))]
+    public class DemoController : MonoBehaviour
+    {
+        [Header("References")]
+        [SerializeField] private GameObject _targetObject;
+        [SerializeField] private TMP_Text _statusText;
+        [SerializeField] private CanvasGroup _uiPanel;
+
+        [Header("Settings")]
+        [SerializeField] private float _moveSpeed = 5f;
+        [SerializeField] private float _jumpForce = 7f;
+        
+        private Rigidbody _rb;
+        private Vector3 _initialPosition;
+        private bool _isObjectActive = true;
+
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody>();
+            _initialPosition = transform.position;
+        }
+
+        private void Update()
+        {
+            HandleMovement();
+            UpdateUI();
+        }
+
+        private void HandleMovement()
+        {
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+            
+            Vector3 movement = new Vector3(horizontal, 0f, vertical) * _moveSpeed * Time.deltaTime;
+            transform.Translate(movement, Space.World);
+
+            if (Input.GetButtonDown("Jump") && Mathf.Approximately(_rb.velocity.y, 0))
+            {
+                _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            }
+        }
+
+        public void ToggleObjectState()
+        {
+            _isObjectActive = !_isObjectActive;
+            _targetObject.SetActive(_isObjectActive);
+            
+            StartCoroutine(BlinkEffectCoroutine());
+        }
+
+        private IEnumerator BlinkEffectCoroutine()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                _uiPanel.alpha = 0.5f;
+                yield return new WaitForSeconds(0.1f);
+                _uiPanel.alpha = 1f;
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+
+        private void UpdateUI()
+        {
+            _statusText.text = $"State: {(_isObjectActive ? "Active" : "Inactive")}\n" +
+                             $"Position: {transform.position:F2}\n" +
+                             $"Velocity: {_rb.velocity.magnitude:F1} m/s";
+        }
+
+        public void ResetPosition()
+        {
+            transform.position = _initialPosition;
+            _rb.velocity = Vector3.zero;
+        }
+    }
+}</code></pre>
+                
+                <h4>№2 - Управление Игроков В 3D</h4>
+                <pre><code>using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace Player
+{
+    [RequireComponent(typeof(Rigidbody))]
+    public class PlayerController : MonoBehaviour
+    {
+        [Header("Movement Settings")]
+        [SerializeField] private float _moveSpeed = 8f;
+        [SerializeField] private float _rotationSpeed = 10f;
+        [SerializeField] private float _jumpForce = 7f;
+        [SerializeField] private LayerMask _groundLayer;
+
+        [Header("References")]
+        [SerializeField] private Transform _cameraTransform;
+        [SerializeField] private ParticleSystem _jumpParticles;
+
+        private Rigidbody _rb;
+        private Vector2 _moveInput;
+        private bool _isGrounded;
+
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody>();
+        }
+
+        private void FixedUpdate()
+        {
+            HandleMovement();
+            CheckGround();
+        }
+
+        public void OnMove(InputAction.CallbackContext context)
+        {
+            _moveInput = context.ReadValue<Vector2>();
+        }
+
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (context.performed && _isGrounded)
+            {
+                _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+                _jumpParticles.Play();
+            }
+        }
+
+        private void HandleMovement()
+        {
+            Vector3 cameraForward = Vector3.Scale(_cameraTransform.forward, new Vector3(1, 0, 1)).normalized;
+            Vector3 movement = (cameraForward * _moveInput.y + _cameraTransform.right * _moveInput.x) * _moveSpeed;
+
+            _rb.velocity = new Vector3(movement.x, _rb.velocity.y, movement.z);
+
+            if (movement != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(movement);
+                transform.rotation = Quaternion.Slerp(
+                    transform.rotation, 
+                    targetRotation, 
+                    Time.deltaTime * _rotationSpeed
+                );
+            }
+        }
+
+        private void CheckGround()
+        {
+            _isGrounded = Physics.Raycast(
+                transform.position, 
+                Vector3.down, 
+                0.1f, 
+                _groundLayer
+            );
+        }
+    }
+}</code></pre>
+                
+                <h4>№3 - Система UI</h4>
+                <pre><code>using UnityEngine;
+using TMPro;
+
+namespace UI
+{
+    public class UIManager : MonoBehaviour
+    {
+        [Header("References")]
+        [SerializeField] private TMP_Text _healthText;
+        [SerializeField] private TMP_Text _scoreText;
+        [SerializeField] private GameObject _gameOverPanel;
+        [SerializeField] private GameObject[] _hearthIcons;
+
+        [Header("Settings")]
+        [SerializeField] private float _animationDuration = 0.5f;
+
+        private CanvasGroup _currentPanel;
+
+        public void UpdateHealth(int health)
+        {
+            _healthText.text = $"Health: {health}";
+            
+            for (int i = 0; i < _hearthIcons.Length; i++)
+            {
+                _hearthIcons[i].SetActive(i < health);
+            }
+        }
+
+        public void UpdateScore(int score)
+        {
+            _scoreText.text = score.ToString("D6");
+        }
+
+        public void ShowGameOver()
+        {
+            StartCoroutine(FadeInPanel(_gameOverPanel));
+        }
+
+        private IEnumerator FadeInPanel(GameObject panel)
+        {
+            panel.SetActive(true);
+            CanvasGroup cg = panel.GetComponent<CanvasGroup>();
+            cg.alpha = 0;
+
+            float elapsed = 0f;
+            while (elapsed < _animationDuration)
+            {
+                cg.alpha = Mathf.Lerp(0, 1, elapsed / _animationDuration);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            cg.alpha = 1;
+        }
+
+        public void RestartGame()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex
+            );
+        }
+    }
+}</code></pre>
+                
+                <h4>№4 - Система Стрельбы</h4>
+                <pre><code>using UnityEngine;
+using System.Collections;
+
+namespace Combat
+{
+    public class WeaponSystem : MonoBehaviour
+    {
+        [Header("Settings")]
+        [SerializeField] private float _fireRate = 0.2f;
+        [SerializeField] private float _projectileSpeed = 20f;
+        [SerializeField] private int _maxAmmo = 30;
+
+        [Header("References")]
+        [SerializeField] private Transform _firePoint;
+        [SerializeField] private GameObject _projectilePrefab;
+        [SerializeField] private ParticleSystem _muzzleFlash;
+
+        private int _currentAmmo;
+        private bool _isReloading;
+
+        private void Start()
+        {
+            _currentAmmo = _maxAmmo;
+        }
+
+        private void Update()
+        {
+            if (Input.GetButton("Fire1") && !_isReloading)
+            {
+                StartCoroutine(FireWeapon());
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                StartCoroutine(Reload());
+            }
+        }
+
+        private IEnumerator FireWeapon()
+        {
+            while (_currentAmmo > 0 && Input.GetButton("Fire1"))
+            {
+                GameObject projectile = Instantiate(
+                    _projectilePrefab,
+                    _firePoint.position,
+                    _firePoint.rotation
+                );
+
+                Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                rb.AddForce(_firePoint.forward * _projectileSpeed, ForceMode.VelocityChange);
+
+                _muzzleFlash.Play();
+                _currentAmmo--;
+
+                yield return new WaitForSeconds(_fireRate);
+            }
+        }
+
+        private IEnumerator Reload()
+        {
+            _isReloading = true;
+            yield return new WaitForSeconds(2f);
+            _currentAmmo = _maxAmmo;
+            _isReloading = false;
+        }
+    }
+}</code></pre>
             </section>
         </main>
     </div>
