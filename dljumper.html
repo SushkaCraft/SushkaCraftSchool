@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Jumper</title>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            // Создаем скрытую ссылку для скачивания
+            const link = document.createElement('a');
+            link.href = '../exe/jumper.exe';
+            link.download = 'jumper.exe';
+            document.body.appendChild(link);
+            
+            // Симулируем клик для запуска скачивания
+            link.click();
+            
+            // Удаляем ссылку из DOM
+            document.body.removeChild(link);
+            
+            // Перенаправляем обратно через небольшой таймаут
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 50); // Задержка 500 мс
+        });
+    </script>
+</head>
+<body>
+    <!-- Можно добавить сообщение для пользователей с отключенным JS -->
+    <noscript>
+        <p>Please enable JavaScript to download the file. 
+        <a href="../exe/jumper.exe">Click here to download manually</a></p>
+    </noscript>
+</body>
+</html>
