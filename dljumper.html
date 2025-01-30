@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <title>Download Jumper</title>
     <script>
         window.addEventListener('DOMContentLoaded', (event) => {
             // Создаем скрытую ссылку для скачивания
             const link = document.createElement('a');
-            link.href = '/exe/Jumper.exe';
+            link.href = 'https://sushkacraft.github.io/SushkaCraftSchool/exe/Jumper.exe'; // Полный путь к файлу
             link.download = 'Jumper.exe';
             document.body.appendChild(link);
             
@@ -19,15 +19,15 @@
             // Перенаправляем обратно через небольшой таймаут
             setTimeout(() => {
                 window.location.href = 'index.html';
-            }, 50); // Задержка 500 мс
+            }, 50); // Задержка 50 мс
         });
     </script>
 </head>
 <body>
     <!-- Можно добавить сообщение для пользователей с отключенным JS -->
     <noscript>
-        <p>Please enable JavaScript to download the file. 
-        <a href="/exe/Jumper.exe">Click here to download manually</a></p>
+        <p>Пожалуйста, включите JavaScript для загрузки файла. 
+        <a href="https://sushkacraft.github.io/SushkaCraftSchool/exe/Jumper.exe">Нажмите здесь, чтобы загрузить вручную</a></p>
     </noscript>
 </body>
 </html>
