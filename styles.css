@@ -228,10 +228,7 @@ img {
 
 code {
     font-family: 'Courier New', monospace;
-    background-color: #1a283d;
-    color: #c7d5d8;
     padding: 2px 4px;
-    border-radius: 3px;
 }
 
 .code-note pre {
