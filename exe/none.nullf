@@ -1,0 +1,26 @@
+&connect sysio;
+
+&const float : pi <- 3.14; 
+
+f_name func_name::<*
+  str: String_1 <- ["#* is print func"];
+
+  str: String_2 <- sysio.in:"Input - ":;
+
+  sysio.out:"Output - " + none + *_* + null:;
+*>
+
+none_sript::;
+
+//*
+sysio - lib, system for Input\Output
+str: - type of data String
+other data types:
+int: Intager
+float: Float
+bool: Boolean
+ch: Char
+bit: 1 bit
+byte: 1 byte
+
+*//
