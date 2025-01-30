@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Unity/C# by SushkaCraft</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="preload" href="fonts/Inter-VariableFont_opsz,wght.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="icon" href="images/avatar.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <main class="main">
+            <h1 class="text-center">Unity Компоненты и Методы</h1>
+
+            <!-- Transform -->
+            <section class="component">
+                <h2>Transform</h2>
+                <div class="note">
+                    <strong>2D:</strong> Используйте Vector2 для position<br>
+                    <strong>3D:</strong> Используйте Vector3 для position
+                </div>
+                
+                <h3>Свойства:</h3>
+                <ul>
+                    <li><code>position</code> (Vector3) - глобальная позиция объекта</li>
+                    <li><code>localPosition</code> (Vector3) - позиция относительно родителя</li>
+                    <li><code>rotation</code> (Quaternion) - глобальное вращение</li>
+                    <li><code>localScale</code> (Vector3) - масштаб объекта</li>
+                </ul>
+
+                <h3>Методы:</h3>
+                <p><code>void Translate(Vector3 translation, Space relativeTo = Space.Self)</code></p>
+                <div class="code-note">
+                    <pre><code>// Перемещение объекта вперед в локальном пространстве
+transform.Translate(Vector3.forward * Time.deltaTime);
+
+// Перемещение в мировых координатах
+transform.Translate(Vector3.right * 2f, Space.World);</code></pre>
+                </div>
+            </section>
+
+            <!-- Rigidbody -->
+            <section class="component">
+                <h2>Rigidbody</h2>
+                <div class="note">
+                    <strong>2D:</strong> Rigidbody2D (используйте Vector2 и ForceMode2D)<br>
+                    <strong>3D:</strong> Rigidbody (Vector3 и ForceMode)
+                </div>
+
+                <h3>Методы:</h3>
+                <p><code>void AddForce(Vector3 force, ForceMode mode = ForceMode.Force)</code></p>
+                <ul>
+                    <li><strong>force</strong> - вектор силы</li>
+                    <li><strong>mode</strong> - тип приложения силы (Force, Acceleration, Impulse, VelocityChange)</li>
+                </ul>
+
+                <div class="code-note">
+                    <pre><code>// Прыжок с импульсной силой
+rigidbody.AddForce(Vector3.up * 5f, ForceMode.Impulse);</code></pre>
+                </div>
+
+                <p><code>void MovePosition(Vector3 position)</code></p>
+                <div class="code-note">
+                    <pre><code>// Плавное перемещение к точке
+Vector3 newPos = transform.position + Vector3.forward * 2f;
+rigidbody.MovePosition(newPos);</code></pre>
+                </div>
+            </section>
+
+            <!-- Корутины -->
+            <section class="component">
+                <h2>Корутины</h2>
+                <p><code>Coroutine StartCoroutine(IEnumerator routine)</code></p>
+                <div class="code-note">
+                    <pre><code>IEnumerator Fade() {
+    float alpha = 1f;
+    while (alpha > 0) {
+        alpha -= Time.deltaTime;
+        GetComponent&lt;Renderer&gt;().material.color = new Color(1, 1, 1, alpha);
+        yield return null;
+    }
+}
+
+// Запуск корутины
+StartCoroutine(Fade());</code></pre>
+                </div>
+            </section>
+
+            <!-- GameObject -->
+            <section class="component">
+                <h2>GameObject</h2>
+                <p><code>void SetActive(bool active)</code></p>
+                <div class="code-note">
+                    <pre><code>// Деактивация объекта
+gameObject.SetActive(false);
+
+// Активация дочернего объекта
+transform.GetChild(0).gameObject.SetActive(true);</code></pre>
+                </div>
+
+                <h3>Свойства:</h3>
+                <ul>
+                    <li><code>activeSelf</code> (bool) - локальное состояние активности</li>
+                    <li><code>activeInHierarchy</code> (bool) - фактическая активность с учетом родительских объектов</li>
+                </ul>
+            </section>
+
+            <!-- UI -->
+            <section class="component">
+                <h2>UI Система</h2>
+
+                <h3>Image</h3>
+                <p><code>Sprite sprite</code> - устанавливает изображение</p>
+                <div class="code-note">
+                    <pre><code>// Изменение изображения кнопки
+GetComponent&lt;Image&gt;().sprite = Resources.Load&lt;Sprite&gt;("newSprite");</code></pre>
+                </div>
+
+                <h3>TextMeshPro</h3>
+                <p><code>string text</code> - устанавливает отображаемый текст</p>
+                <div class="code-note">
+                    <pre><code>// Обновление текста счетчика
+GetComponent&lt;TMP_Text&gt;().text = $"Score: {currentScore}";</code></pre>
+                </div>
+
+                <h3>Canvas</h3>
+                <p><code>RenderMode renderMode</code> - режим отрисовки (ScreenSpaceOverlay, ScreenSpaceCamera, WorldSpace)</p>
+                <div class="code-note">
+                    <pre><code>// Переключение в режим мировых координат
+GetComponent&lt;Canvas&gt;().renderMode = RenderMode.WorldSpace;</code></pre>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <a href="#" class="nav-button">↑</a>
+        </footer>
+    </div>
+</body>
+</html>
